@@ -1,0 +1,10 @@
+class CreateMobiles < ActiveRecord::Migration[5.0]
+  def change
+    create_table :mobiles do |t|
+      t.integer :number
+      t.text :message
+
+      t.timestamps
+    end
+  end
+end

@@ -1,0 +1,11 @@
+<table>
+<% @mobiles.each_with_index do |mobile, index| %>
+  <tr>
+    <td><%= index + 1 %></td>
+    <td><%= mobile.number%></td>
+    <td><%= mobile.message%></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to "History", history_index_path %>
