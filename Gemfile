@@ -33,6 +33,8 @@ gem 'sinatra', github: 'sinatra'
 gem 'sidekiq'
 gem 'slim'
 
+gem 'passenger', '~> 5.0', '>= 5.0.28'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
