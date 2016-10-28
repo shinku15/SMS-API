@@ -1,0 +1,43 @@
+<!-- <nav class="navbar navbar-default">
+  <div class="container">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Notify</a>
+    </div>
+
+<% if user_signed_in? %>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
+
+    </ul>
+<% else %>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Login", new_user_session_path %></li>
+        <li role="separator" class="divider"></li>
+        <li><%= link_to "Password Reset", new_user_password_path(current_user)%></li>
+    </ul>
+
+<% end %>
+
+
+    </div>
+</nav> -->
+
+nav.navbar.navbar-default
+  .container
+    .navbar-header
+      a.navbar-brand href="#"
+        | Notify
+
+    - if user_signed_in?
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to "Logout", destroy_user_session_path, method: :delete
+    - else
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to "Login", new_user_session_path
+        li
+          = link_to "Password Reset", new_user_password_path(current_user)

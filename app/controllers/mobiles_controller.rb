@@ -1,25 +1,20 @@
 class MobilesController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
-    @mobiles = Mobile.all
+
   end
 
   def create
-    contacts = params[:mobile][:number].split(",")
-    @mobiles = []
-    contacts.each do |contact|
-      @mobile = Mobile.new(number: contact, message: params[:mobile][:message])
-      @mobile.save
-      @mobile.send_message
-      @mobiles << @mobile
-    end
+
   end
 
   def new
-    @mobile = Mobile.new()
+
   end
 
   def show
-    @mobile = Mobile.find(params[:id])
+
   end
 
   def edit
@@ -31,9 +26,43 @@ class MobilesController < ApplicationController
   def destroy
   end
 
-  private
+  def import
+      @errors = []
+      if params[:message].present?
 
-  def mobile_params
-      params.require(:mobile).permit(:number,:message)
+          if params[:file].present? || params[:number].present?
+
+            if params[:file].present?
+              Mobile.import(params[:file],params[:message])
+              @success = true
+            else
+              @errors << "Error in file"
+              @success = false
+            end
+
+            if params[:number].present?
+              contacts = params[:number].split(",")
+                  contacts.uniq.each do |contact|
+                      if contact.length == 10 && /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.match(contact)
+                        SendJob.perform_later(contact, params[:message])
+                        @success = true
+                      else
+                        @errors << "Number is less than 10 digits"
+                        @success = false
+                      end
+                  end
+            end
+
+          else
+              @errors <<" Upload a file or provide a contact"
+              @success = false
+          end
+
+      else
+        @errors << "Message is blank"
+        @errors << "Upload a file or provide a contact"  unless params[:file].present? || params[:number].present?
+        @success = false
+      end
   end
+
 end

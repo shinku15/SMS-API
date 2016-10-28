@@ -1,0 +1,12 @@
+<% if @success == true %>
+window.location.href = "<%= history_index_url %>";
+<% else %>
+   $(".message").html("");
+
+  <% if @errors.size > 0 %>
+      $(".message").addClass("alert alert-danger");
+    <% @errors.each do |error| %>
+      $(".message").append("<%= error %><br/>");
+    <% end %>
+  <%end%>
+<% end %>

@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-sm-12
+      .h2
+        strong
+          | History
+          .pull-right
+            = link_to "Send Message", new_mobile_path, class: 'btn btn-primary pull-right'
+
+  .row
+    .col-md-12
+      .panel.panel-default
+        table.table.table-striped.table-bordered.table-hover.table-condensed
+          thead
+          tbody
+            - @histories.each do |history|
+              tr
+                td
+                  .media
+                    .media-left
+                    .media-body
+                      div.media-heading
+                        strong Phone Number :
+                        = history.phone
+                      strong Message :
+                      = history.message
+                      br
+                      strong Status :
+                      = history.status
+
+    = link_to "Send Message", new_mobile_path

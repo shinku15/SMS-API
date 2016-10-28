@@ -1,0 +1,68 @@
+<!-- <div class="container">
+  <div class="row">
+
+    <div class="col-md-4 col-md-offset-4">
+      <h2>
+        <strong>Compose Message</strong>
+      <h2>
+    </div>
+
+
+    <div class="col-md-4 col-md-offset-4">
+
+    <div class="message" role="alert"></div>
+
+    <%= form_tag import_mobiles_path ,multipart: true, :remote => true do %>
+        <div class="form-group">
+          <%= label_tag :Message %>
+          <%= text_area_tag :message, '', class: 'form-control' %>
+        </div>
+
+        <div class= "form-group">
+          <%= label_tag :Number%>
+          <%= text_field_tag :number, '', class: 'form-control' %>
+        </div>
+
+        <div class= "form-group">
+          <%= label_tag :"Import file"%>
+          <%= file_field_tag :file %>
+        </div>
+
+        <div class="form-group">
+        <%= submit_tag "Send Message", class: 'btn btn-primary' %>
+        </div>
+        <%end%>
+
+    <%= link_to "History", history_index_path %>
+    </div>
+  </div>
+</div> -->
+
+
+.container
+  .row
+    .col-md-4.col-md-offset-4
+      h2
+        strong
+          Compose Message
+
+    .col-md-4.col-md-offset-4
+      .message
+
+      = form_tag import_mobiles_path ,multipart: true, :remote => true do
+        .form-group
+          = label_tag :Message
+          = text_area_tag :message, '', class: 'form-control'
+
+        .form-group
+          = label_tag :Number
+          = text_field_tag :number, '', class: 'form-control'
+
+        .form-group
+          = label_tag :"Import file"
+          = file_field_tag :file
+
+        .form-group
+          = submit_tag "Send Message", class: 'btn btn-primary'
+
+      = link_to "History", history_index_path
